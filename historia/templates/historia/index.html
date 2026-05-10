@@ -684,9 +684,15 @@ function unlockSite(){
   const lock = document.getElementById('lockscreen');
   lock.classList.add('hide');
   setTimeout(()=>{ lock.style.display='none'; }, 900);
-  // Mostrar player
   setTimeout(()=>{
     document.getElementById('music-player').classList.add('visible');
+    // Toca a música automaticamente
+    const audio = document.getElementById('bg-music');
+    audio.play().then(()=>{
+      document.getElementById('player-btn').textContent = '⏸';
+      document.getElementById('player-bars').classList.remove('paused');
+      musicPlaying = true;
+    }).catch(()=>{});
   }, 600);
 }
 
