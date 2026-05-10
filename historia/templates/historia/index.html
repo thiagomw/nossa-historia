@@ -1,0 +1,476 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nossa História 💛 Thiago & Mel</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Italiana&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#D4A843;--gold-light:#F0C96B;--gold-dim:#8B6914;--cream:#FDF6E3;--ink:#1A1209;--rose:#C97B5A;--bg:#0D0A05;--card:#1A1209;--card2:#211810;}
+  *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+  body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+  /* Gradiente dourado fixo — cobre o site inteiro */
+  body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 20%,rgba(212,168,67,0.10) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 15% 70%,rgba(201,123,90,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 35% at 85% 80%,rgba(212,168,67,0.06) 0%,transparent 55%);pointer-events:none;z-index:0;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.6;}
+  nav{position:fixed;top:0;width:100%;z-index:110;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(13,10,5,0.95),transparent);backdrop-filter:blur(4px);}
+  .nav-logo{font-family:'Italiana',serif;font-size:1.4rem;color:var(--gold);letter-spacing:0.1em;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--cream);text-decoration:none;font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;opacity:0.7;transition:opacity 0.3s,color 0.3s;}
+  .nav-links a:hover{opacity:1;color:var(--gold);}
+  #hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;text-align:center;padding:2rem;}
+  .hero-bg{display:none;}
+  .particles{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1;}
+  .particle{position:absolute;background:var(--gold);border-radius:50%;animation:float linear infinite;opacity:0;}
+  @keyframes float{0%{transform:translateY(100vh) scale(0);opacity:0;}10%{opacity:1;}90%{opacity:0.5;}100%{transform:translateY(-10vh) scale(1.5);opacity:0;}}
+  .hero-eyebrow{font-size:0.75rem;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;animation:fadeUp 1s ease 0.3s both;}
+  .hero-title{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,10vw,7rem);line-height:1;color:var(--cream);animation:fadeUp 1s ease 0.5s both;}
+  .hero-title em{color:var(--gold);font-style:italic;}
+  .hero-sub{font-family:'Italiana',serif;font-size:clamp(1.2rem,3vw,2rem);color:var(--gold-dim);margin-top:1rem;letter-spacing:0.15em;animation:fadeUp 1s ease 0.7s both;}
+  .hero-counter{display:flex;align-items:center;gap:0.8rem;margin-top:2.5rem;animation:fadeUp 1s ease 0.9s both;flex-wrap:wrap;justify-content:center;}
+  .counter-item{display:flex;flex-direction:column;align-items:center;gap:0.2rem;}
+  .counter-num{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--gold);line-height:1;min-width:2ch;text-align:center;}
+  .counter-label{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream);opacity:0.4;}
+  .counter-sep{color:var(--gold);opacity:0.3;font-size:1rem;margin-bottom:1rem;}
+  .hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeUp 1s ease 1.2s both;opacity:0.5;}
+  .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
+  @keyframes scrollPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+  section{padding:6rem 2rem;max-width:1100px;margin:0 auto;position:relative;z-index:2;}
+  .section-eyebrow{font-size:0.7rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);margin-bottom:0.8rem;}
+  .section-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);color:var(--cream);margin-bottom:3rem;line-height:1.15;}
+  .section-title span{color:var(--gold);font-style:italic;}
+  .divider{width:60px;height:1px;background:var(--gold);margin:1rem 0 3rem;opacity:0.5;}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1.5rem;margin-top:3rem;}
+  .stat-card{background:var(--card);border:1px solid rgba(212,168,67,0.15);border-radius:4px;padding:2.5rem 2rem;text-align:center;position:relative;overflow:hidden;transition:transform 0.3s,border-color 0.3s;}
+  .stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0;transition:opacity 0.3s;}
+  .stat-card:hover{transform:translateY(-4px);border-color:rgba(212,168,67,0.4);}
+  .stat-card:hover::before{opacity:1;}
+  .stat-number{font-family:'Playfair Display',serif;font-size:2.8rem;color:var(--gold);line-height:1;display:block;}
+  .stat-label{font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--cream);opacity:0.5;margin-top:0.6rem;}
+  .stat-icon{font-size:1.5rem;margin-bottom:0.8rem;display:block;}
+  .words-highlight{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem;}
+  .word-pill{padding:0.6rem 1.4rem;border:1px solid rgba(212,168,67,0.3);border-radius:100px;font-size:0.9rem;color:var(--gold-light);background:rgba(212,168,67,0.05);font-family:'Playfair Display',serif;font-style:italic;transition:all 0.3s;cursor:default;}
+  .word-pill:hover{background:rgba(212,168,67,0.15);border-color:var(--gold);transform:scale(1.05);}
+  .word-pill .count{font-family:'DM Sans',sans-serif;font-style:normal;font-size:0.7rem;opacity:0.6;margin-left:0.4rem;}
+  .frases-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1rem;margin-top:2rem;}
+  .frase-card{background:var(--card);border:1px solid rgba(212,168,67,0.1);border-radius:4px;padding:1.5rem 2rem;border-left:3px solid transparent;transition:all 0.3s;}
+  .frase-card:hover{border-left-color:var(--gold);background:var(--card2);}
+  .frase-text{font-family:'Playfair Display',serif;font-size:0.98rem;font-style:italic;color:var(--cream);line-height:1.65;margin-bottom:0.6rem;}
+  .frase-autor{font-size:0.72rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);opacity:0.7;}
+  .chart-wrap{background:var(--card);border:1px solid rgba(212,168,67,0.1);border-radius:4px;padding:2rem;margin-top:2rem;}
+  .chart-bars{display:flex;align-items:flex-end;gap:8px;height:180px;margin-top:1.5rem;}
+  .bar-group{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;}
+  .bar{width:100%;border-radius:2px 2px 0 0;transition:opacity 0.3s;min-height:4px;}
+  .bar:hover{opacity:0.8;}
+  .bar-label{font-size:0.6rem;color:var(--cream);opacity:0.4;text-align:center;margin-top:4px;}
+  .gallery-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px;margin-top:2rem;}
+  .gallery-item{position:relative;overflow:hidden;cursor:pointer;background:var(--card);aspect-ratio:1;}
+  .gallery-item img,.gallery-item video{width:100%;height:100%;object-fit:cover;transition:transform 0.5s;display:block;}
+  .gallery-item:hover img,.gallery-item:hover video{transform:scale(1.06);}
+  .gallery-item .overlay{position:absolute;inset:0;background:rgba(13,10,5,0);transition:background 0.3s;}
+  .gallery-item:hover .overlay{background:rgba(13,10,5,0.25);}
+  .vid-badge{position:absolute;top:10px;right:10px;background:rgba(212,168,67,0.9);color:var(--ink);font-size:0.65rem;letter-spacing:0.1em;padding:0.2rem 0.6rem;border-radius:100px;font-weight:500;}
+  .lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.96);align-items:center;justify-content:center;}
+  .lightbox.active{display:flex;}
+  .lightbox img,.lightbox video{max-width:90vw;max-height:88vh;object-fit:contain;border-radius:2px;}
+  .lb-close{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--cream);cursor:pointer;opacity:0.6;transition:opacity 0.2s;background:none;border:none;}
+  .lb-close:hover{opacity:1;}
+  .lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);font-size:2.5rem;color:var(--cream);cursor:pointer;opacity:0.4;transition:opacity 0.2s;background:none;border:none;padding:1rem;}
+  .lb-prev{left:1rem;}.lb-next{right:1rem;}
+  .lb-prev:hover,.lb-next:hover{opacity:1;}
+  .lb-counter{position:absolute;bottom:1.5rem;left:50%;transform:translateX(-50%);font-size:0.8rem;color:var(--cream);opacity:0.4;letter-spacing:0.1em;}
+  .timeline{margin-top:2rem;position:relative;padding-left:2rem;}
+  .timeline::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(212,168,67,0.1));}
+  .timeline-item{position:relative;margin-bottom:2.5rem;padding-left:1.5rem;}
+  .timeline-item::before{content:'';position:absolute;left:-2.4rem;top:0.35rem;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px rgba(212,168,67,0.5);}
+  .timeline-date{font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;}
+  .timeline-title{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--cream);margin-bottom:0.4rem;}
+  .timeline-desc{font-size:0.88rem;color:var(--cream);opacity:0.55;line-height:1.65;}
+  .music-list{display:flex;flex-direction:column;gap:1px;margin-top:2rem;border:1px solid rgba(212,168,67,0.1);border-radius:4px;overflow:hidden;}
+  .music-item{display:flex;align-items:flex-start;gap:1.5rem;padding:1.5rem 2rem;background:var(--card);transition:background 0.3s;border-bottom:1px solid rgba(212,168,67,0.05);}
+  .music-item:last-child{border-bottom:none;}
+  .music-item:hover{background:var(--card2);}
+  .music-item.nossa{background:linear-gradient(to right,rgba(212,168,67,0.08),var(--card));border-left:3px solid var(--gold);}
+  .music-num{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--gold);opacity:0.4;min-width:2rem;text-align:center;padding-top:0.2rem;}
+  .music-item.nossa .music-num{opacity:1;}
+  .music-info{flex:1;}
+  .music-name{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--cream);}
+  .music-artist{font-size:0.8rem;color:var(--cream);opacity:0.45;margin-top:0.2rem;}
+  .music-meaning{font-size:0.82rem;color:var(--cream);opacity:0.6;margin-top:0.6rem;line-height:1.65;max-width:540px;}
+  .music-meaning em{color:var(--gold-dim);font-style:italic;}
+  .music-tag{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;padding:0.3rem 0.8rem;border:1px solid var(--gold);color:var(--gold);border-radius:100px;white-space:nowrap;margin-top:0.2rem;}
+  .chat-container{background:var(--card);border:1px solid rgba(212,168,67,0.15);border-radius:8px;overflow:hidden;margin-top:2rem;}
+  .chat-header{padding:1.2rem 2rem;border-bottom:1px solid rgba(212,168,67,0.1);display:flex;align-items:center;gap:1rem;}
+  .chat-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--rose));display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
+  .chat-name{font-family:'Playfair Display',serif;font-size:1rem;color:var(--cream);}
+  .chat-status{font-size:0.72rem;color:var(--gold);opacity:0.7;}
+  .chat-messages{height:380px;overflow-y:auto;padding:2rem;display:flex;flex-direction:column;gap:1.2rem;scrollbar-width:thin;scrollbar-color:var(--gold-dim) transparent;}
+  .msg{max-width:75%;padding:1rem 1.4rem;border-radius:4px;font-size:0.9rem;line-height:1.6;animation:msgIn 0.3s ease;}
+  @keyframes msgIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+  .msg.bot{background:var(--card2);border:1px solid rgba(212,168,67,0.1);align-self:flex-start;color:var(--cream);border-radius:4px 16px 16px 4px;}
+  .msg.user{background:linear-gradient(135deg,rgba(212,168,67,0.15),rgba(212,168,67,0.08));border:1px solid rgba(212,168,67,0.2);align-self:flex-end;color:var(--gold-light);border-radius:16px 4px 4px 16px;}
+  .msg-time{font-size:0.65rem;opacity:0.35;margin-top:0.4rem;}
+  .typing{display:flex;gap:4px;padding:1rem 1.4rem;background:var(--card2);border:1px solid rgba(212,168,67,0.1);border-radius:4px 16px 16px 4px;align-self:flex-start;width:fit-content;}
+  .typing span{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:blink 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:0.2s;}.typing span:nth-child(3){animation-delay:0.4s;}
+  @keyframes blink{0%,80%,100%{opacity:0.2;transform:scale(0.8);}40%{opacity:1;transform:scale(1);}}
+  .chat-input-area{padding:1.2rem 2rem;border-top:1px solid rgba(212,168,67,0.1);display:flex;gap:1rem;}
+  .chat-input{flex:1;background:rgba(255,255,255,0.04);border:1px solid rgba(212,168,67,0.15);border-radius:4px;padding:0.8rem 1.2rem;color:var(--cream);font-family:'DM Sans',sans-serif;font-size:0.9rem;outline:none;transition:border-color 0.3s;}
+  .chat-input:focus{border-color:rgba(212,168,67,0.4);}
+  .chat-input::placeholder{color:var(--cream);opacity:0.25;}
+  .chat-send{background:var(--gold);border:none;border-radius:4px;padding:0.8rem 1.5rem;color:var(--ink);font-family:'DM Sans',sans-serif;font-weight:500;font-size:0.85rem;cursor:pointer;transition:all 0.2s;}
+  .chat-send:hover{background:var(--gold-light);transform:translateY(-1px);}
+  .chat-send:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+  .chat-suggestions{padding:0 2rem 1.2rem;display:flex;flex-wrap:wrap;gap:0.5rem;}
+  .suggestion{padding:0.4rem 1rem;border:1px solid rgba(212,168,67,0.2);border-radius:100px;font-size:0.75rem;color:var(--gold-dim);cursor:pointer;transition:all 0.2s;background:transparent;font-family:'DM Sans',sans-serif;}
+  .suggestion:hover{background:rgba(212,168,67,0.08);border-color:var(--gold);color:var(--gold);}
+  footer{text-align:center;padding:4rem 2rem 3rem;border-top:1px solid rgba(212,168,67,0.08);}
+  .footer-heart{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--gold);font-style:italic;margin-bottom:0.8rem;}
+  footer p{font-size:0.75rem;opacity:0.25;letter-spacing:0.1em;}
+  .month-group{margin-top:3.5rem;}
+  .month-label{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--cream);margin-bottom:1rem;padding-bottom:0.6rem;border-bottom:1px solid rgba(212,168,67,0.15);display:flex;align-items:center;gap:1rem;}
+  .month-label span{font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);opacity:0.7;font-family:'DM Sans',sans-serif;}
+  .month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px;}
+  @media(max-width:768px){nav{padding:1rem 1.5rem;}.nav-links{gap:1rem;}.nav-links a{font-size:0.7rem;}section{padding:4rem 1.5rem;}.stats-grid{grid-template-columns:repeat(2,1fr);gap:1rem;}.stat-card{padding:1.5rem 1rem;}.stat-number{font-size:2rem;}.frases-grid{grid-template-columns:1fr;}.music-item{flex-wrap:wrap;gap:0.8rem;padding:1.2rem 1rem;}.music-meaning{max-width:100%;}.chat-messages{height:300px;padding:1rem;}.chat-input-area{padding:0.8rem 1rem;gap:0.6rem;}.chat-suggestions{padding:0 1rem 0.8rem;}.chat-header{padding:1rem;}.msg{max-width:90%;font-size:0.85rem;}.month-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}.counter-sep{display:none;}.counter-num{font-size:1.3rem;}.counter-item{background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.15);border-radius:4px;padding:0.5rem 0.8rem;min-width:52px;}}
+  @media(max-width:480px){.nav-links{display:none;}.gallery-grid,.month-grid{grid-template-columns:repeat(2,1fr);gap:4px;}.hero-title{font-size:3rem;}.hero-sub{font-size:1.1rem;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">T & M</div>
+  <ul class="nav-links">
+    <li><a href="#stats">Números</a></li>
+    <li><a href="#galeria">Fotos</a></li>
+    <li><a href="#timeline">História</a></li>
+    <li><a href="#musicas">Músicas</a></li>
+    <li><a href="#sonhos">Sonhos</a></li>
+    <li><a href="#chat-section">Conversar</a></li>
+  </ul>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="particles" id="particles"></div>
+  <p class="hero-eyebrow">10 de novembro de 2024</p>
+  <h1 class="hero-title">Nossa<br><em>História</em></h1>
+  <p class="hero-sub">Thiago & Mel</p>
+  <div class="hero-counter" id="hero-counter">
+    <div class="counter-item"><span class="counter-num" id="c-anos">0</span><span class="counter-label">anos</span></div>
+    <div class="counter-sep">·</div>
+    <div class="counter-item"><span class="counter-num" id="c-meses">0</span><span class="counter-label">meses</span></div>
+    <div class="counter-sep">·</div>
+    <div class="counter-item"><span class="counter-num" id="c-dias">0</span><span class="counter-label">dias</span></div>
+    <div class="counter-sep">·</div>
+    <div class="counter-item"><span class="counter-num" id="c-horas">00</span><span class="counter-label">horas</span></div>
+    <div class="counter-sep">:</div>
+    <div class="counter-item"><span class="counter-num" id="c-min">00</span><span class="counter-label">min</span></div>
+    <div class="counter-sep">:</div>
+    <div class="counter-item"><span class="counter-num" id="c-seg">00</span><span class="counter-label">seg</span></div>
+  </div>
+  <div class="hero-scroll"><div class="scroll-line"></div><span style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.5;">scroll</span></div>
+</section>
+
+<section id="stats">
+  <p class="section-eyebrow">O que os números dizem</p>
+  <h2 class="section-title">Nossa conversa<br>em <span>dados</span></h2>
+  <div class="divider"></div>
+  <div class="stats-grid">
+    {% for s in stats %}
+    <div class="stat-card">
+      <span class="stat-icon">{{ s.icone }}</span>
+      <span class="stat-number">{{ s.numero }}</span>
+      <span class="stat-label">{{ s.label }}</span>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div style="margin-top:4rem;">
+    <p class="section-eyebrow">O vocabulário de vocês</p>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cream);margin-bottom:0.8rem;">Palavras que são só de vocês</h3>
+    <p style="font-size:0.88rem;color:var(--cream);opacity:0.45;margin-bottom:2rem;line-height:1.7;">Apelidos, expressões e palavras que marcam quem vocês são juntos.</p>
+    <div class="words-highlight">
+      {% for p in palavras %}
+      <div class="word-pill">{{ p.palavra }} <span class="count">×{{ p.count }}</span></div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div style="margin-top:3.5rem;">
+  <p class="section-eyebrow">Frases marcantes</p>
+  <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;color:var(--cream);margin-bottom:0.5rem;">O que vocês se disseram de verdade</h3>
+
+  <p style="font-size:0.85rem;color:var(--gold);opacity:0.8;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;margin-top:2rem;">— Thiago</p>
+  <div class="frases-grid">
+    {% for f in frases_thiago %}
+    <div class="frase-card">
+      <div class="frase-text">"{{ f.texto }}"</div>
+      <div class="frase-autor">— {{ f.autor }}</div>
+    </div>
+    {% endfor %}
+  </div>
+
+  <p style="font-size:0.85rem;color:var(--gold);opacity:0.8;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1rem;margin-top:2.5rem;">— Mel</p>
+  <div class="frases-grid">
+    {% for f in frases_mel %}
+    <div class="frase-card">
+      <div class="frase-text">"{{ f.texto }}"</div>
+      <div class="frase-autor">— {{ f.autor }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+  <div class="chart-wrap" style="margin-top:4rem;">
+    <p class="section-eyebrow">Intensidade por mês</p>
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--cream);">Fevereiro/2025 — o mês mais intenso de vocês</h3>
+    <div class="chart-bars" id="chart-bars"></div>
+    <div style="display:flex;gap:2rem;margin-top:1.2rem;">
+      <div style="display:flex;align-items:center;gap:0.5rem;"><div style="width:12px;height:12px;background:#4A90D9;border-radius:2px;"></div><span style="font-size:0.75rem;opacity:0.6;">Thiago</span></div>
+      <div style="display:flex;align-items:center;gap:0.5rem;"><div style="width:12px;height:12px;background:var(--gold);border-radius:2px;"></div><span style="font-size:0.75rem;opacity:0.6;">Mel</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="galeria" style="padding:6rem 0;max-width:100%;">
+  <div style="max-width:1100px;margin:0 auto;padding:0 2rem;">
+    <p class="section-eyebrow">Memórias</p>
+    <h2 class="section-title">Vocês em <span>fotos</span></h2>
+    <div class="divider"></div>
+  </div>
+  <div id="gallery-root" style="max-width:1400px;margin:0 auto;padding:0 2rem;"></div>
+</section>
+
+<section id="timeline">
+  <p class="section-eyebrow">Onde estivemos</p>
+  <h2 class="section-title">A linha do <span>tempo</span></h2>
+  <div class="divider"></div>
+  <div class="timeline">
+    {% for item in timeline %}
+    <div class="timeline-item">
+      <div class="timeline-date">{{ item.data }}</div>
+      <div class="timeline-title">{{ item.titulo }}</div>
+      <div class="timeline-desc">{{ item.desc }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="musicas">
+  <p class="section-eyebrow">A trilha sonora</p>
+  <h2 class="section-title">As músicas que <span>contam vocês</span></h2>
+  <div class="divider"></div>
+  <div class="music-list">
+    {% for m in musicas %}
+    <div class="music-item {% if m.destaque %}nossa{% endif %}">
+      <div class="music-num">{{ m.num }}</div>
+      <div class="music-info">
+        <div class="music-name">{{ m.nome }}</div>
+        <div class="music-artist">{{ m.artista }}</div>
+        <div class="music-meaning">{{ m.significado }}</div>
+      </div>
+      {% if m.tag %}<div class="music-tag">{{ m.tag }}</div>{% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="sonhos">
+  <p class="section-eyebrow">O futuro de vocês</p>
+  <h2 class="section-title">Sonhos <span>compartilhados</span></h2>
+  <div class="divider"></div>
+  <div class="stats-grid">
+    {% for s in sonhos %}
+    <div class="stat-card" style="text-align:left;padding:2rem;">
+      <span style="font-size:2rem;display:block;margin-bottom:1rem;">{{ s.icone }}</span>
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--cream);margin-bottom:0.6rem;">{{ s.titulo }}</div>
+      <div style="font-size:0.82rem;color:var(--cream);opacity:0.55;line-height:1.65;">{{ s.desc }}</div>
+      <div style="font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-top:1rem;opacity:0.7;">{{ s.autor }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<section id="chat-section">
+  <p class="section-eyebrow">Inteligência artificial</p>
+  <h2 class="section-title">Converse com o<br><span>Diário do Casal</span></h2>
+  <div class="divider"></div>
+  <p style="font-size:0.9rem;opacity:0.5;margin-top:-1.5rem;margin-bottom:2rem;line-height:1.7;">Uma IA treinada na história de vocês. Pergunte qualquer coisa — ela sabe tudo.</p>
+  <div class="chat-container">
+    <div class="chat-header">
+      <div class="chat-avatar">💛</div>
+      <div>
+        <div class="chat-name">Diário do Casal</div>
+        <div class="chat-status">● online — sabe tudo sobre vocês</div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chat-messages">
+      <div class="msg bot">Oi 💛 Sou o diário de vocês. Pode me perguntar qualquer coisa sobre a história de Thiago e Mel — estou aqui!<div class="msg-time">agora</div></div>
+    </div>
+    <div class="chat-suggestions">
+      <button class="suggestion" onclick="sendSuggestion(this)">Qual a música de vocês?</button>
+      <button class="suggestion" onclick="sendSuggestion(this)">Quando começou tudo?</button>
+      <button class="suggestion" onclick="sendSuggestion(this)">O que o Thiago mais fala?</button>
+      <button class="suggestion" onclick="sendSuggestion(this)">Me conta algo especial</button>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chat-input" class="chat-input" placeholder="Pergunte algo sobre vocês…">
+      <button id="send-btn" class="chat-send" onclick="sendMessage()">Enviar</button>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">×</button>
+  <button class="lb-prev" onclick="lbNav(-1)">‹</button>
+  <div id="lb-media"></div>
+  <button class="lb-next" onclick="lbNav(1)">›</button>
+  <div class="lb-counter" id="lb-counter"></div>
+</div>
+
+<footer>
+  <div class="footer-heart">T & M</div>
+  <p>10 · 11 · 2024 — sempre 💛</p>
+</footer>
+
+<script>
+const CHART_DATA = {{ chart_data_json|safe }};
+const DATA_INICIO = '{{ data_inicio }}';
+
+// Partículas
+const pc = document.getElementById('particles');
+for(let i=0;i<30;i++){
+  const p=document.createElement('div');p.className='particle';
+  p.style.left=Math.random()*100+'%';
+  p.style.animationDuration=(8+Math.random()*12)+'s';
+  p.style.animationDelay=(Math.random()*10)+'s';
+  p.style.width=p.style.height=(1+Math.random()*3)+'px';
+  pc.appendChild(p);
+}
+
+// Gráfico de barras
+const maxVal = Math.max(...CHART_DATA.flatMap(m=>[m.thiago,m.mel]));
+const chartEl = document.getElementById('chart-bars');
+CHART_DATA.forEach(m=>{
+  const group=document.createElement('div');group.className='bar-group';
+  const wrap=document.createElement('div');wrap.style.cssText='display:flex;gap:2px;align-items:flex-end;width:100%;height:100%;';
+  [['thiago','#4A90D9'],['mel','#D4A843']].forEach(([k,cor])=>{
+    const bar=document.createElement('div');bar.className='bar';
+    bar.style.height=(m[k]/maxVal*100)+'%';bar.style.background=cor;
+    bar.title=`${k==='thiago'?'Thiago':'Mel'}: ${m[k]}`;
+    wrap.appendChild(bar);
+  });
+  const label=document.createElement('div');label.className='bar-label';label.textContent=m.label;
+  group.appendChild(wrap);group.appendChild(label);chartEl.appendChild(group);
+});
+
+// Contador ao vivo
+function updateCounter(){
+  const start=new Date(DATA_INICIO);const now=new Date();const diff=now-start;
+  const totalSeg=Math.floor(diff/1000);const seg=totalSeg%60;
+  const totalMin=Math.floor(totalSeg/60);const min=totalMin%60;
+  const totalHoras=Math.floor(totalMin/60);const horas=totalHoras%24;
+  let anos=now.getFullYear()-start.getFullYear();let meses=now.getMonth()-start.getMonth();
+  if(meses<0){anos--;meses+=12;}
+  const diaInicio=new Date(now.getFullYear(),now.getMonth(),start.getDate());
+  let dias=Math.floor((now-diaInicio)/(1000*60*60*24));
+  if(dias<0){meses--;if(meses<0){anos--;meses+=12;}const prev=new Date(now.getFullYear(),now.getMonth(),0);dias=prev.getDate()+dias;}
+  document.getElementById('c-anos').textContent=anos;
+  document.getElementById('c-meses').textContent=meses;
+  document.getElementById('c-dias').textContent=dias;
+  document.getElementById('c-horas').textContent=String(horas).padStart(2,'0');
+  document.getElementById('c-min').textContent=String(min).padStart(2,'0');
+  document.getElementById('c-seg').textContent=String(seg).padStart(2,'0');
+}
+updateCounter();setInterval(updateCounter,1000);
+
+// Galeria — carregada da API Django
+const allMedia=[];
+fetch('/api/galeria/').then(r=>r.json()).then(data=>{
+  const root=document.getElementById('gallery-root');
+  if(!data.grupos||data.grupos.length===0){
+    root.innerHTML='<p style="opacity:0.3;padding:2rem;font-size:0.9rem;">Nenhuma foto encontrada. Adicione imagens em <code>media/galeria/AAAA-MM-nome/</code>.</p>';
+    return;
+  }
+  data.grupos.forEach((grupo,gi)=>{
+    const section=document.createElement('div');section.className='month-group';
+    const label=document.createElement('div');label.className='month-label';
+    label.innerHTML=grupo.label+` <span>${grupo.fotos.length+grupo.videos.length} mídia${(grupo.fotos.length+grupo.videos.length)>1?'s':''}</span>`;
+    section.appendChild(label);
+    const grid=document.createElement('div');grid.className='month-grid';
+    grupo.fotos.forEach(src=>{
+      const idx=allMedia.length;allMedia.push({type:'img',src});
+      const item=document.createElement('div');item.className='gallery-item';
+      const img=document.createElement('img');img.src=src;img.loading='lazy';
+      item.appendChild(img);
+      const overlay=document.createElement('div');overlay.className='overlay';item.appendChild(overlay);
+      item.addEventListener('click',(i=>()=>openLightbox(i))(idx));
+      grid.appendChild(item);
+    });
+    grupo.videos.forEach(src=>{
+      const idx=allMedia.length;allMedia.push({type:'vid',src});
+      const item=document.createElement('div');item.className='gallery-item';
+      const vid=document.createElement('video');vid.src=src;vid.muted=true;vid.loop=true;vid.playsInline=true;
+      item.appendChild(vid);
+      const badge=document.createElement('div');badge.className='vid-badge';badge.textContent='VIDEO';item.appendChild(badge);
+      const overlay=document.createElement('div');overlay.className='overlay';item.appendChild(overlay);
+      item.addEventListener('mouseenter',()=>vid.play());
+      item.addEventListener('mouseleave',()=>{vid.pause();vid.currentTime=0;});
+      item.addEventListener('click',(i=>()=>openLightbox(i))(idx));
+      grid.appendChild(item);
+    });
+    section.appendChild(grid);root.appendChild(section);
+  });
+});
+
+let lbIdx=0;
+function openLightbox(i){lbIdx=i;renderLb();document.getElementById('lightbox').classList.add('active');document.body.style.overflow='hidden';}
+function closeLightbox(){document.getElementById('lightbox').classList.remove('active');document.body.style.overflow='';document.getElementById('lb-media').innerHTML='';}
+function lbNav(dir){lbIdx=(lbIdx+dir+allMedia.length)%allMedia.length;renderLb();}
+function renderLb(){
+  const m=allMedia[lbIdx];const c=document.getElementById('lb-media');c.innerHTML='';
+  if(m.type==='img'){const img=document.createElement('img');img.src=m.src;c.appendChild(img);}
+  else{const vid=document.createElement('video');vid.src=m.src;vid.controls=true;vid.autoplay=true;vid.style.maxWidth='90vw';vid.style.maxHeight='88vh';c.appendChild(vid);}
+  document.getElementById('lb-counter').textContent=`${lbIdx+1} / ${allMedia.length}`;
+}
+document.addEventListener('keydown',e=>{
+  if(!document.getElementById('lightbox').classList.contains('active'))return;
+  if(e.key==='ArrowLeft')lbNav(-1);if(e.key==='ArrowRight')lbNav(1);if(e.key==='Escape')closeLightbox();
+});
+
+// Chat
+const chatHistory=[];
+const chatEl=document.getElementById('chat-messages');
+function scrollChat(){chatEl.scrollTop=chatEl.scrollHeight;}
+function addMsg(text,type){
+  const div=document.createElement('div');div.className=`msg ${type}`;
+  const now=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+  div.innerHTML=text.replace(/\n/g,'<br>')+`<div class="msg-time">${now}</div>`;
+  chatEl.appendChild(div);scrollChat();
+}
+function showTyping(){const div=document.createElement('div');div.className='typing';div.id='typing';div.innerHTML='<span></span><span></span><span></span>';chatEl.appendChild(div);scrollChat();}
+function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
+async function sendMessage(){
+  const input=document.getElementById('chat-input');const btn=document.getElementById('send-btn');
+  const text=input.value.trim();if(!text)return;
+  addMsg(text,'user');chatHistory.push({role:'user',content:text});
+  input.value='';btn.disabled=true;showTyping();
+  try{
+    const res=await fetch('/api/chat/',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','X-CSRFToken':getCookie('csrftoken')},
+      body:JSON.stringify({messages:chatHistory})
+    });
+    const data=await res.json();
+    const reply=data.reply||data.error||'Não consegui responder agora...';
+    removeTyping();addMsg(reply,'bot');chatHistory.push({role:'assistant',content:reply});
+  }catch(e){removeTyping();addMsg('Ops, não consegui conectar agora!','bot');}
+  btn.disabled=false;
+}
+function sendSuggestion(el){document.getElementById('chat-input').value=el.textContent;sendMessage();}
+document.getElementById('chat-input').addEventListener('keydown',e=>{if(e.key==='Enter')sendMessage();});
+function getCookie(name){const v=document.cookie.match('(^|;) ?'+name+'=([^;]*)(;|$)');return v?v[2]:null;}
+</script>
+</body>
+</html>
