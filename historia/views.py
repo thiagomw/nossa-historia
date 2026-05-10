@@ -190,12 +190,12 @@ TIMELINE = [
 ]
 
 MUSICAS = [
-    {'num': '♪', 'destaque': True,  'nome': 'REPRISE',         'artista': 'Boombeat, FBC, Los Brasileros', 'tag': 'Nossa música', 'significado': 'A música de vocês. A Boombeat é trans, artista, exatamente como a Mel — então quando essa música toca, ela carrega os dois ao mesmo tempo.'},
-    {'num': '2', 'destaque': False, 'nome': 'Chorojo',          'artista': 'Os Tincoãs',                   'tag': '',             'significado': 'A Mel é filha de Oxum — muito filha de Oxum, mãe de santo, da Umbanda. Chorojo carrega essa energia das águas, do sagrado feminino.'},
-    {'num': '3', 'destaque': False, 'nome': 'SALA VERMELHA #3', 'artista': 'Ajuliacosta (Prod. Greezy)',   'tag': '',             'significado': 'Ela se declarando pra você. Simples assim.'},
-    {'num': '4', 'destaque': False, 'nome': 'Te vi de canto',   'artista': 'Ro Rosa, Patricio Sid',        'tag': '',             'significado': 'Tem a pegada de vocês — a letra certa, o clima certo, aquela vibe que encaixa sem forçar.'},
-    {'num': '5', 'destaque': False, 'nome': 'Tiramisu',         'artista': 'MD Chefe',                     'tag': '',             'significado': 'Meio que autoexplicativa. Você sabe o motivo — e ela também sabe.'},
-    {'num': '6', 'destaque': False, 'nome': 'Samurai',          'artista': 'Djavan',                       'tag': '',             'significado': 'Djavan escreveu sobre como é bom amar — essa leveza, essa certeza calma de quem sabe que encontrou.'},
+    {'num': '♪', 'destaque': True,  'nome': 'REPRISE',         'artista': 'Boombeat, FBC, Los Brasileros', 'tag': 'Nossa música', 'significado': 'Nossa música. A Boombeat é artista — assim como você. Então quando essa música toca, ela carrega ao mesmo tempo o amor que sinto por você e tudo que você é.'},
+    {'num': '2', 'destaque': False, 'nome': 'Chorojo',          'artista': 'Os Tincoãs',                   'tag': '',             'significado': 'Você é filha de Oxum — e muito filha de Oxum. Mãe de santo, da Umbanda, desse universo que você me apresentou. Chorojo carrega essa energia das águas, do acolhimento, do sagrado. Quando ouço, você aparece inteira.'},
+    {'num': '3', 'destaque': False, 'nome': 'SALA VERMELHA #3', 'artista': 'Ajuliacosta (Prod. Greezy)',   'tag': '',             'significado': 'Você se declarando pra mim. Pelo menos é assim que eu vejo kkkk'},
+    {'num': '4', 'destaque': False, 'nome': 'Te vi de canto',   'artista': 'Ro Rosa, Patricio Sid',        'tag': '',             'significado': 'Tem nossa pegada — levinha, gostosa, do jeito que a gente é junto. Às vezes uma música não precisa de uma grande história pra ser nossa. Ela só encaixa.'},
+    {'num': '5', 'destaque': False, 'nome': 'Tiramisu',         'artista': 'MD Chefe',                     'tag': '',             'significado': 'Você sabe o motivo. Eu sei o motivo. Deixa assim.'},
+    {'num': '6', 'destaque': False, 'nome': 'Samurai',          'artista': 'Djavan',                       'tag': '',             'significado': 'Djavan escreveu sobre a leveza de amar alguém de verdade — sem drama, sem pressa, só a certeza calma de quem encontrou. Me lembra a gente quando tô do seu lado, deitadinho, sem precisar de nada mais.'},
 ]
 
 CHART_DATA = [
@@ -232,8 +232,8 @@ RELACIONAMENTO:
 - "toma cuidado" — dito 125x em toda saída | "fica em paz" — despedida deles, 79x
 
 SOBRE A MEL:
-- Trans, artista, mãe de santo da Umbanda, filha de Oxum. Aniversário: 23/02.
-- Ela chama ele de "guri", "garoto" | Ele chama ela de "rainha", "vidinha"
+- Artista, uma mulher incrivel, mãe de santo da Umbanda, filha de Oxum, trans. Super esforçada, sempre ajuda todo mundo, adora uma festinha, tipo a Mamba. Fã de Anitta, adora a música Carnaval da Marina Senna. Depois de chegar em casa, é banho e cama pra tirar um cochilo, adora um chocolate, ama fumar um verdinho, se é que me entende, é o amor da minha vida. Aniversário: 23/02.
+- Ela chama ele de "mozão", "vidão", "guri", "garoto" | Ele chama ela de "rainha", "vidinha"
 
 FRASES MARCANTES:
 - Mel: "De verdade nunca vivi o que vivo com você!"
