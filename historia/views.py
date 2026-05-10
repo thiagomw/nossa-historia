@@ -12,8 +12,8 @@ from django.conf import settings
 STATS = [
     {'icone': '💬', 'numero': '28.433', 'label': 'mensagens trocadas'},
     {'icone': '📅', 'numero': '517',    'label': 'dias conversando'},
-    {'icone': '✍️', 'numero': '9.884',  'label': 'textos dela pra você'},
-    {'icone': '✍️', 'numero': '7.840',  'label': 'textos meus pra você'},
+    {'icone': '✍️ 💛', 'numero': '9.884',  'label': 'textos dela pra você'},
+    {'icone': '✍️ 💙', 'numero': '7.840',  'label': 'textos meus pra você'},
     # {'icone': '🎙️', 'numero': '51',     'label': 'áudios — 50 seus, 1 dela'},
     {'icone': '🌅', 'numero': '13h',    'label': 'hora favorita — almoço'},
     {'icone': '👑', 'numero': '775×',   'label': '"mozão" — apelido campeão'},
