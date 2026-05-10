@@ -247,6 +247,7 @@
   .player-bars span:nth-child(2){animation-delay:0.15s;}
   .player-bars span:nth-child(3){animation-delay:0.3s;}
   .player-bars.paused span{animation-play-state:paused;}
+  .player-prev,.player-next{font-size:0.75rem;width:26px;height:26px;}
   @keyframes barAnim{0%,100%{height:4px;}50%{height:14px;}}
 </style>
 </head>
@@ -640,6 +641,62 @@ function toggleNav(){
   btn.classList.toggle('open');
   document.body.style.overflow=links.classList.contains('open')?'hidden':'';
 }
+
+// ── Playlist ──
+const PLAYLIST = [
+  { nome: 'REPRISE',         artista: 'Boombeat, FBC, Los Brasileros', src: '/media/audio/reprise.mp3' },
+  { nome: 'Chorojo',          artista: 'Os Tincoãs',                   src: '/media/audio/chorojo.mp3' },
+  { nome: 'Samurai',          artista: 'Djavan',                       src: '/media/audio/samurai.mp3' },
+  { nome: 'SALA VERMELHA #3', artista: 'Ajuliacosta',                  src: '/media/audio/sala_vermelha.mp3' },,
+  { nome: 'Te vi de canto',   artista: 'Ro Rosa, Patricio Sid',        src: '/media/audio/te_vi_de_canto.mp3' },
+  { nome: 'Tiramisu',         artista: 'MD Chefe',                     src: '/media/audio/tiramisu.mp3' },
+];
+
+let currentTrack = 0;
+let musicPlaying = false;
+const audio = document.getElementById('bg-music');
+
+function loadTrack(idx) {
+  currentTrack = (idx + PLAYLIST.length) % PLAYLIST.length;
+  const t = PLAYLIST[currentTrack];
+  audio.src = t.src;
+  document.getElementById('player-name').textContent = t.nome;
+  document.getElementById('player-artist').textContent = t.artista;
+}
+
+function toggleMusic() {
+  if (musicPlaying) {
+    audio.pause();
+    document.getElementById('player-btn').textContent = '▶';
+    document.getElementById('player-bars').classList.add('paused');
+    musicPlaying = false;
+  } else {
+    if (!audio.src) loadTrack(0);
+    audio.play().then(() => {
+      document.getElementById('player-btn').textContent = '⏸';
+      document.getElementById('player-bars').classList.remove('paused');
+      musicPlaying = true;
+    }).catch(() => {});
+  }
+}
+
+function nextTrack() {
+  loadTrack(currentTrack + 1);
+  if (musicPlaying) audio.play().catch(() => {});
+}
+
+function prevTrack() {
+  // Se passou mais de 3s, volta pro início da música atual
+  if (audio.currentTime > 3) {
+    audio.currentTime = 0;
+  } else {
+    loadTrack(currentTrack - 1);
+    if (musicPlaying) audio.play().catch(() => {});
+  }
+}
+
+// Ao acabar, toca a próxima automaticamente (loop na última = volta pra primeira)
+audio.addEventListener('ended', () => nextTrack());
 // Fechar ao clicar em link
 document.querySelectorAll('.nav-links a').forEach(a=>{
   a.addEventListener('click',()=>{
@@ -686,8 +743,7 @@ function unlockSite(){
   setTimeout(()=>{ lock.style.display='none'; }, 900);
   setTimeout(()=>{
     document.getElementById('music-player').classList.add('visible');
-    // Toca a música automaticamente
-    const audio = document.getElementById('bg-music');
+    loadTrack(0);
     audio.play().then(()=>{
       document.getElementById('player-btn').textContent = '⏸';
       document.getElementById('player-bars').classList.remove('paused');
@@ -700,26 +756,21 @@ document.getElementById('lock-input').addEventListener('keydown', e=>{
   if(e.key==='Enter') checkPassword();
 });
 
-// ── Player de música ──
-let musicPlaying = false;
-const audio = document.getElementById('bg-music');
+<!-- Player de música flutuante -->
+<div id="music-player">
+  <button class="player-btn player-prev" onclick="prevTrack()" title="Anterior">«</button>
+  <button class="player-btn" id="player-btn" onclick="toggleMusic()">▶</button>
+  <button class="player-btn player-next" onclick="nextTrack()" title="Próxima">»</button>
+  <div class="player-info">
+    <div class="player-name" id="player-name">REPRISE</div>
+    <div class="player-artist" id="player-artist">Boombeat, FBC, Los Brasileros</div>
+  </div>
+  <div class="player-bars" id="player-bars">
+    <span></span><span></span><span></span>
+  </div>
+</div>
 
-function toggleMusic(){
-  if(musicPlaying){
-    audio.pause();
-    document.getElementById('player-btn').textContent = '▶';
-    document.getElementById('player-bars').classList.add('paused');
-    musicPlaying = false;
-  } else {
-    audio.play().catch(()=>{
-      // Autoplay bloqueado — abre Spotify
-      window.open('https://open.spotify.com/track/3BovdzfaX4jJ5KMVlA3FNP','_blank');
-    });
-    document.getElementById('player-btn').textContent = '⏸';
-    document.getElementById('player-bars').classList.remove('paused');
-    musicPlaying = true;
-  }
-}
+<audio id="bg-music"></audio>
 </script>
 </body>
 </html>
