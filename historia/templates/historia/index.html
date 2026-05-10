@@ -499,7 +499,7 @@ for(let i=0;i<30;i++){
 }
 
 // Gráfico de barras
-const maxVal = Math.max(...CHART_DATA.flatMap(m=>[m.thiago,m.mel]));
+const maxVal = Math.max(...CHART_DATA.flatMap(m=>[m.eu,m.voce]));
 const chartEl = document.getElementById('chart-bars');
 CHART_DATA.forEach(m=>{
   const group=document.createElement('div');group.className='bar-group';
@@ -563,19 +563,19 @@ fetch('/api/galeria/').then(r=>r.json()).then(data=>{
   });
 
   grupo.videos.forEach(item=>{
-    const idx=allMedia.length;
-    allMedia.push({type:'vid', src:item.src});
-    const el=document.createElement('div');el.className='gallery-item';
-    // thumb como imagem, vídeo só carrega no lightbox
-    const img=document.createElement('img');
-    img.src=item.thumb;
-    img.loading='lazy';
-    img.style.cssText='width:100%;height:100%;object-fit:cover;';
-    el.appendChild(img);
-    const badge=document.createElement('div');badge.className='vid-badge';badge.textContent='VIDEO';el.appendChild(badge);
-    const overlay=document.createElement('div');overlay.className='overlay';el.appendChild(overlay);
-    el.addEventListener('click',(i=>()=>openLightbox(i))(idx));
-    grid.appendChild(el);
+  const idx=allMedia.length;
+  allMedia.push({type:'vid', src:item.src});
+  const el=document.createElement('div');el.className='gallery-item';
+  // thumb como imagem, vídeo só carrega no lightbox
+  const img=document.createElement('img');
+  img.src=item.thumb;
+  img.loading='lazy';
+  img.style.cssText='width:100%;height:100%;object-fit:cover;';
+  el.appendChild(img);
+  const badge=document.createElement('div');badge.className='vid-badge';badge.textContent='VIDEO';el.appendChild(badge);
+  const overlay=document.createElement('div');overlay.className='overlay';el.appendChild(overlay);
+  el.addEventListener('click',(i=>()=>openLightbox(i))(idx));
+  grid.appendChild(el);
   });
     section.appendChild(grid);root.appendChild(section);
   });
