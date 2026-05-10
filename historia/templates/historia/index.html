@@ -10,7 +10,6 @@
   :root{--gold:#D4A843;--gold-light:#F0C96B;--gold-dim:#8B6914;--cream:#FDF6E3;--ink:#1A1209;--rose:#C97B5A;--bg:#0D0A05;--card:#1A1209;--card2:#211810;}
   *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
   body{background:var(--bg);color:var(--cream);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
-  /* Gradiente dourado fixo — cobre o site inteiro */
   body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 20%,rgba(212,168,67,0.10) 0%,transparent 65%),radial-gradient(ellipse 50% 40% at 15% 70%,rgba(201,123,90,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 35% at 85% 80%,rgba(212,168,67,0.06) 0%,transparent 55%);pointer-events:none;z-index:0;}
   body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:0.6;}
   nav{position:fixed;top:0;width:100%;z-index:110;padding:1.2rem 3rem;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(to bottom,rgba(13,10,5,0.95),transparent);backdrop-filter:blur(4px);}
@@ -135,9 +134,7 @@
   /* ── Melhorias gerais mobile ── */
   *{-webkit-tap-highlight-color:transparent;}
   button,a{touch-action:manipulation;}
-  /* Previne zoom automático em inputs no iOS */
   input,textarea,select{font-size:16px !important;}
-  /* Altura real do viewport no mobile (considera barra do browser) */
   #hero{min-height:100svh;min-height:-webkit-fill-available;}
   #lockscreen{min-height:100svh;min-height:-webkit-fill-available;}
 
@@ -165,11 +162,9 @@
     .counter-item{background:rgba(212,168,67,0.06);border:1px solid rgba(212,168,67,0.15);border-radius:4px;padding:0.5rem 0.8rem;min-width:52px;}
     .chart-bars{height:140px;}
     .bar-label{font-size:0.55rem;}
-    #music-player{bottom:1rem;right:1rem;padding:0.5rem 1rem 0.5rem 0.6rem;}
-    #music-player { width: 280px; }
-    .player-name { width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .player-artist { width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    #music-player{bottom:1rem;right:1rem;padding:0.5rem 1rem 0.5rem 0.6rem;width:200px;}
     .player-artist{display:none;}
+    .player-name{width:80px;}
     .lock-logo{margin-bottom:1.5rem;}
     .lock-sub{margin-bottom:1.5rem;}
     .lock-form{max-width:280px;}
@@ -195,7 +190,6 @@
     .lock-hint{display:none;}
     .lock-input{padding:0.9rem 1rem;letter-spacing:0.2em;}
 
-    /* Hambúrguer — nav mobile */
     .nav-links{display:none;flex-direction:column;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(13,10,5,0.98);backdrop-filter:blur(10px);z-index:200;align-items:center;justify-content:center;gap:2.5rem;padding:2rem;}
     .nav-links.open{display:flex;}
     .nav-links a{font-size:1.1rem;letter-spacing:0.2em;opacity:0.8;}
@@ -236,15 +230,15 @@
   .lock-error.show{opacity:1;}
   .lock-hint{font-size:0.7rem;color:var(--cream);opacity:0.2;margin-top:2rem;letter-spacing:0.1em;}
 
-  /* Player de música flutuante */
-  #music-player{position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;display:flex;align-items:center;gap:0.8rem;background:rgba(26,18,9,0.92);border:1px solid rgba(212,168,67,0.2);border-radius:100px;padding:0.6rem 1.2rem 0.6rem 0.8rem;backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease;pointer-events:none;}
+  /* ── Player de música flutuante ── */
+  #music-player{position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;display:flex;align-items:center;gap:0.8rem;background:rgba(26,18,9,0.92);border:1px solid rgba(212,168,67,0.2);border-radius:100px;padding:0.6rem 1.2rem 0.6rem 0.8rem;backdrop-filter:blur(10px);opacity:0;transform:translateY(10px);transition:opacity 0.5s ease,transform 0.5s ease;pointer-events:none;width:300px;}
   #music-player.visible{opacity:1;transform:translateY(0);pointer-events:all;}
   .player-btn{width:32px;height:32px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all 0.2s;flex-shrink:0;}
   .player-btn:hover{background:var(--gold-light);transform:scale(1.1);}
-  .player-info{display:flex;flex-direction:column;gap:0.1rem;}
-  .player-name{font-size:0.72rem;color:var(--cream);letter-spacing:0.05em;white-space:nowrap;}
-  .player-artist{font-size:0.62rem;color:var(--cream);opacity:0.4;white-space:nowrap;}
-  .player-bars{display:flex;align-items:flex-end;gap:2px;height:14px;margin-left:0.3rem;}
+  .player-info{display:flex;flex-direction:column;gap:0.1rem;flex:1;min-width:0;}
+  .player-name{font-size:0.72rem;color:var(--cream);letter-spacing:0.05em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .player-artist{font-size:0.62rem;color:var(--cream);opacity:0.4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .player-bars{display:flex;align-items:flex-end;gap:2px;height:14px;margin-left:0.3rem;flex-shrink:0;}
   .player-bars span{width:3px;background:var(--gold);border-radius:2px;animation:barAnim 0.8s ease infinite;}
   .player-bars span:nth-child(1){animation-delay:0s;}
   .player-bars span:nth-child(2){animation-delay:0.15s;}
@@ -286,11 +280,7 @@
   </div>
 </div>
 
-<audio id="bg-music"></audio>
-
-<!-- Audio player oculto — substitua o src pela URL do áudio se tiver -->
-<audio id="bg-music" loop>
-</audio>
+<audio id="bg-music" loop></audio>
 
 <nav>
   <div class="nav-logo">T & M</div>
@@ -492,7 +482,7 @@
 <script>
 if (history.scrollRestoration) {
     history.scrollRestoration = 'manual';
-}  
+}
 const CHART_DATA = {{ chart_data_json|safe }};
 const DATA_INICIO = '{{ data_inicio }}';
 
@@ -543,7 +533,7 @@ function updateCounter(){
 }
 updateCounter();setInterval(updateCounter,1000);
 
-// Galeria — carregada da API Django
+// Galeria
 const allMedia=[];
 fetch('/api/galeria/').then(r=>r.json()).then(data=>{
   const root=document.getElementById('gallery-root');
@@ -570,21 +560,19 @@ fetch('/api/galeria/').then(r=>r.json()).then(data=>{
     el.addEventListener('click',(i=>()=>openLightbox(i))(idx));
     grid.appendChild(el);
   });
-
   grupo.videos.forEach(item=>{
-  const idx=allMedia.length;
-  allMedia.push({type:'vid', src:item.src});
-  const el=document.createElement('div');el.className='gallery-item';
-  // thumb como imagem, vídeo só carrega no lightbox
-  const img=document.createElement('img');
-  img.src=item.thumb;
-  img.loading='lazy';
-  img.style.cssText='width:100%;height:100%;object-fit:cover;';
-  el.appendChild(img);
-  const badge=document.createElement('div');badge.className='vid-badge';badge.textContent='VIDEO';el.appendChild(badge);
-  const overlay=document.createElement('div');overlay.className='overlay';el.appendChild(overlay);
-  el.addEventListener('click',(i=>()=>openLightbox(i))(idx));
-  grid.appendChild(el);
+    const idx=allMedia.length;
+    allMedia.push({type:'vid', src:item.src});
+    const el=document.createElement('div');el.className='gallery-item';
+    const img=document.createElement('img');
+    img.src=item.thumb;
+    img.loading='lazy';
+    img.style.cssText='width:100%;height:100%;object-fit:cover;';
+    el.appendChild(img);
+    const badge=document.createElement('div');badge.className='vid-badge';badge.textContent='VIDEO';el.appendChild(badge);
+    const overlay=document.createElement('div');overlay.className='overlay';el.appendChild(overlay);
+    el.addEventListener('click',(i=>()=>openLightbox(i))(idx));
+    grid.appendChild(el);
   });
     section.appendChild(grid);root.appendChild(section);
   });
@@ -647,7 +635,7 @@ function toggleNav(){
   document.body.style.overflow=links.classList.contains('open')?'hidden':'';
 }
 
-// ── Playlist ──
+// Playlist
 const PLAYLIST = [
   { nome: 'REPRISE',         artista: 'Boombeat, FBC, Los Brasileros', src: '/media/audio/reprise.mp3' },
   { nome: 'Chorojo',          artista: 'Os Tincoãs',                   src: '/media/audio/chorojo.mp3' },
@@ -691,7 +679,6 @@ function nextTrack() {
 }
 
 function prevTrack() {
-  // Se passou mais de 3s, volta pro início da música atual
   if (audio.currentTime > 3) {
     audio.currentTime = 0;
   } else {
@@ -700,9 +687,8 @@ function prevTrack() {
   }
 }
 
-// Ao acabar, toca a próxima automaticamente (loop na última = volta pra primeira)
 audio.addEventListener('ended', () => nextTrack());
-// Fechar ao clicar em link
+
 document.querySelectorAll('.nav-links a').forEach(a=>{
   a.addEventListener('click',()=>{
     document.querySelector('.nav-links').classList.remove('open');
@@ -711,11 +697,9 @@ document.querySelectorAll('.nav-links a').forEach(a=>{
   });
 });
 
-// ── Tela de entrada ──
-const SENHA = 'oxum';
+// Tela de entrada
 const RESPOSTAS_OK = ['oxum', 'oxun', 'ochum', 'òxum'];
 
-// Partículas na tela de entrada
 const lpc = document.getElementById('lock-particles');
 for(let i=0;i<20;i++){
   const p=document.createElement('div');p.className='particle';
@@ -760,7 +744,6 @@ function unlockSite(){
 document.getElementById('lock-input').addEventListener('keydown', e=>{
   if(e.key==='Enter') checkPassword();
 });
-
 </script>
 </body>
 </html>
