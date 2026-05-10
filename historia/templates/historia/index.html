@@ -507,7 +507,7 @@ CHART_DATA.forEach(m=>{
   [['eu','#4A90D9'],['voce','#D4A843']].forEach(([k,cor])=>{
     const bar=document.createElement('div');bar.className='bar';
     bar.style.height=(m[k]/maxVal*100)+'%';bar.style.background=cor;
-    bar.title=`${k==='eu'?'Thiago':'voce'}: ${m[k]}`;
+    bar.title=`${k==='eu'?'eu':'voce'}: ${m[k]}`;
     wrap.appendChild(bar);
   });
   const label=document.createElement('div');label.className='bar-label';label.textContent=m.label;
