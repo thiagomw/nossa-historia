@@ -79,25 +79,25 @@ SONHOS = [
         'icone': '🏠',
         'titulo': 'Casinha com quintal',
         'desc': 'O sonho mais recorrente dele. Em janeiro de 2025, menos de 2 meses de namoro, já dizia: "Seria um sonho estar na mesma casinha que você, tudo cheirosinho, com quintal e plantinhas."',
-        'autor': 'Thiago'
+        'autor': 'Eu'
     },
     {
         'icone': '💍',
         'titulo': 'Casamento na cachoeira',
         'desc': 'Logo em dezembro de 2024 ela deixou escapar: "depois que eu responder Sim, toda de branco na cachoeira." 💍',
-        'autor': 'Mel'
+        'autor': 'Você'
     },
     {
         'icone': '👨‍👩‍👧',
         'titulo': 'Adotar um casalzinho',
         'desc': 'Voltando da viagem de SC, em janeiro de 2025: "nossa, um filho nosso seria a coisa mais linda do mundo — mas a gente vai adotar um casalzinho." Ela completou que a viagem mexeu com ela na forma de pensar em construir família.',
-        'autor': 'os dois'
+        'autor': 's dois'
     },
     {
         'icone': '✈️',
         'titulo': 'Viajar juntos sempre',
         'desc': 'A 4ª viagem já está planejada — primeira férias do trabalho dos dois juntos. Ela disse: "a gente merece né vida." Trancoso ou Arraial d\'Ajuda, BA.',
-        'autor': 'os dois'
+        'autor': 'Os dois'
     },
 ]
 
@@ -198,12 +198,12 @@ MUSICAS = [
 ]
 
 CHART_DATA = [
-    {'label': 'Dez/24', 'thiago': 320,  'mel': 290},
-    {'label': 'Jan/25', 'thiago': 1050, 'mel': 920},
-    {'label': 'Fev/25', 'thiago': 1380, 'mel': 1313},
-    {'label': 'Mar/25', 'thiago': 1250, 'mel': 1207},
-    {'label': 'Abr/25', 'thiago': 960,  'mel': 908},
-    {'label': 'Mai/25', 'thiago': 980,  'mel': 1051},
+    {'label': 'Dez/24', 'Eu': 320,  'Você': 290},
+    {'label': 'Jan/25', 'Eu': 1050, 'Você': 920},
+    {'label': 'Fev/25', 'Eu': 1380, 'Você': 1313},
+    {'label': 'Mar/25', 'Eu': 1250, 'Você': 1207},
+    {'label': 'Abr/25', 'Eu': 960,  'Você': 908},
+    {'label': 'Mai/25', 'Eu': 980,  'Você': 1051},
 ]
 
 CHAT_CONTEXT = """Você é o "Diário do Casal" — um assistente carinhoso que conhece toda a história de Thiago e Mel.
