@@ -134,7 +134,7 @@ TIMELINE = [
         'desc': 'Ela disse: "Vivo um sonho lindo há 3 meses contigo." Ele respondeu: "Fazem 3 meses que voltei a realmente ter amor por mim, pela vida e agora por você."'
     },
     {
-        'data': '27 de fevereiro de 2025',
+        'data': '23 de fevereiro de 2025',
         'titulo': 'Aniversário dela 🎂',
         'desc': 'O aniversário dela. Ele comemorou a semana inteira.'
     },
