@@ -335,17 +335,31 @@ def galeria_api(request):
     grupos = []
     galeria_path = os.path.join(settings.MEDIA_ROOT, 'galeria')
     if os.path.isdir(galeria_path):
-        meses = sorted([d for d in os.listdir(galeria_path) if os.path.isdir(os.path.join(galeria_path, d))])
+        meses = sorted([d for d in os.listdir(galeria_path) if os.path.isdir(os.path.join(galeria_path, d)) and d != 'thumbs'])
         for mes in meses:
             mes_path = os.path.join(galeria_path, mes)
+            thumb_path = os.path.join(mes_path, 'thumbs')
             fotos, videos = [], []
             for f in sorted(os.listdir(mes_path)):
-                url = f'{settings.MEDIA_URL}galeria/{mes}/{f}'
-                if f.lower().endswith(('.jpg', '.jpeg', '.png', '.webp', '.gif')):
-                    fotos.append(url)
-                elif f.lower().endswith(('.mp4', '.mov', '.webm')):
-                    videos.append(url)
+                if not os.path.isfile(os.path.join(mes_path, f)):
+                    continue
+                url_original = f'{settings.MEDIA_URL}galeria/{mes}/{f}'
+                ext = f.lower().rsplit('.', 1)[-1]
+                thumb_name = f.rsplit('.', 1)[0] + '.jpg'
+                thumb_url = f'{settings.MEDIA_URL}galeria/{mes}/thumbs/{thumb_name}'
+                thumb_exists = os.path.isfile(os.path.join(thumb_path, thumb_name))
+                url_thumb = thumb_url if thumb_exists else url_original
+
+                if ext in ('jpg', 'jpeg', 'png', 'webp', 'gif'):
+                    fotos.append({'src': url_original, 'thumb': url_thumb})
+                elif ext in ('mp4', 'mov', 'webm'):
+                    videos.append({'src': url_original, 'thumb': url_thumb})
+
             if fotos or videos:
                 partes = mes.split('-')
-                grupos.append({'label': f"{partes[2].capitalize()} {partes[0]}", 'fotos': fotos, 'videos': videos})
+                grupos.append({
+                    'label': f"{partes[2].capitalize()} {partes[0]}",
+                    'fotos': fotos,
+                    'videos': videos
+                })
     return JsonResponse({'grupos': grupos})
