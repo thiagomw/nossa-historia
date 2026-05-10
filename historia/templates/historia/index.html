@@ -31,7 +31,7 @@
   .counter-num{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,4vw,2.2rem);color:var(--gold);line-height:1;min-width:2ch;text-align:center;}
   .counter-label{font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream);opacity:0.4;}
   .counter-sep{color:var(--gold);opacity:0.3;font-size:1rem;margin-bottom:1rem;}
-  .hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeUp 1s ease 1.2s both;opacity:0.5;}
+  .hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;animation:fadeUp 1s ease 1.2s both;opacity:0.5;z-index:10;}
   .scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollPulse 2s ease infinite;}
   @keyframes scrollPulse{0%,100%{opacity:0.3;}50%{opacity:1;}}
   @keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
@@ -168,6 +168,8 @@
     .lock-logo{margin-bottom:1.5rem;}
     .lock-sub{margin-bottom:1.5rem;}
     .lock-form{max-width:280px;}
+    .hero-scroll{bottom:1.2rem;}
+    .hero-counter{margin-bottom:3rem;}
   }
 
   /* ── 480px — celulares pequenos ── */
@@ -316,7 +318,7 @@
     <div class="counter-sep">:</div>
     <div class="counter-item"><span class="counter-num" id="c-seg">00</span><span class="counter-label">seg</span></div>
   </div>
-  <div class="hero-scroll"><div class="scroll-line"></div><span style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.5;">scroll</span></div>
+  <<div class="hero-scroll"><div class="scroll-line"></div><span style="font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.5;">rolar</span></div>
 </section>
 
 <section id="stats">
