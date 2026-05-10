@@ -484,6 +484,9 @@
 </footer>
 
 <script>
+if (history.scrollRestoration) {
+    history.scrollRestoration = 'manual';
+}  
 const CHART_DATA = {{ chart_data_json|safe }};
 const DATA_INICIO = '{{ data_inicio }}';
 
