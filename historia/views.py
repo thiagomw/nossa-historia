@@ -198,12 +198,12 @@ MUSICAS = [
 ]
 
 CHART_DATA = [
-    {'label': 'Dez/24', 'Eu': 320,  'Você': 290},
-    {'label': 'Jan/25', 'Eu': 1050, 'Você': 920},
-    {'label': 'Fev/25', 'Eu': 1380, 'Você': 1313},
-    {'label': 'Mar/25', 'Eu': 1250, 'Você': 1207},
-    {'label': 'Abr/25', 'Eu': 960,  'Você': 908},
-    {'label': 'Mai/25', 'Eu': 980,  'Você': 1051},
+    {'label': 'Dez/24', 'eu': 320,  'voce': 290},
+    {'label': 'Jan/25', 'eu': 1050, 'voce': 920},
+    {'label': 'Fev/25', 'eu': 1380, 'voce': 1313},
+    {'label': 'Mar/25', 'eu': 1250, 'voce': 1207},
+    {'label': 'Abr/25', 'eu': 960,  'voce': 908},
+    {'label': 'Mai/25', 'eu': 980,  'voce': 1051},
 ]
 
 CHAT_CONTEXT = """Você é o "Diário do Casal" — um assistente carinhoso que conhece toda a história de Thiago e Mel.
