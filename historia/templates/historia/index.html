@@ -351,7 +351,7 @@ for(let i=0;i<30;i++){
 }
 
 // Gráfico de barras
-const maxVal = Math.max(...CHART_DATA.flatMap(m=>[m.thiago,m.mel]));
+const maxVal = Math.max(...CHART_DATA.flatMap(m=>[m.eu,m.voce]));
 const chartEl = document.getElementById('chart-bars');
 CHART_DATA.forEach(m=>{
   const group=document.createElement('div');group.className='bar-group';
