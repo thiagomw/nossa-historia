@@ -177,7 +177,7 @@ TIMELINE = [
         'titulo': 'Aniversário dela no Outback 🥩',
         'desc': 'Ele a levou ao Outback para comemorar. Ela disse: "Eu amei tudo que você fez pra mim Mozão, você tornou tudo especial."'
     },
-    {   'data': '27 de fevereiro de 2025', 
+    {   'data': '27 de fevereiro de 2026', 
         'titulo': 'Peruíbe com os amigos 🏖️', 
         'desc': 'Terceira viagem juntos — Peruíbe com as amigas. Praia, sol e a melhor companhia.'
     },
