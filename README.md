@@ -1,4 +1,4 @@
-# Nossa História 💛 — Full Stack + DevOps
+# Nossa História  — Full Stack + DevOps
 
 > Projeto pessoal construído do zero com **Django**, integrado à **API da Anthropic (Claude AI)**, com deploy completo em **VPS Oracle Cloud** usando Nginx, Gunicorn e systemd.
 
@@ -168,3 +168,4 @@ Edite `historia/views.py` — todos os dados estão nos dicionários no topo do 
 ---
 
 *Projeto pessoal — desenvolvido com Python, Django e muito amor. 💛*
+    
