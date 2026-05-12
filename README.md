@@ -2,7 +2,14 @@
 
 > Projeto pessoal construído do zero com **Django**, integrado à **API da Anthropic (Claude AI)**, com deploy completo em **VPS Oracle Cloud** usando Nginx, Gunicorn e systemd.
 
-**Stack:** Python · Django · Nginx · Gunicorn · Oracle Cloud · Ubuntu 22.04 · Claude AI API
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=flat&logo=django&logoColor=white)
+![Nginx](https://img.shields.io/badge/Nginx-009639?style=flat&logo=nginx&logoColor=white)
+![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=flat&logo=gunicorn&logoColor=white)
+![Oracle Cloud](https://img.shields.io/badge/Oracle_Cloud-C74634?style=flat&logo=oracle&logoColor=white)
+![Ubuntu](https://img.shields.io/badge/Ubuntu_22.04-E95420?style=flat&logo=ubuntu&logoColor=white)
+![Claude AI](https://img.shields.io/badge/Claude_AI-412991?style=flat&logo=anthropic&logoColor=white)
+![Status](https://img.shields.io/badge/status-em%20produção-brightgreen)
 
 ---
 
@@ -168,4 +175,3 @@ Edite `historia/views.py` — todos os dados estão nos dicionários no topo do 
 ---
 
 *Projeto pessoal — desenvolvido com Python, Django e muito amor. 💛*
-    
