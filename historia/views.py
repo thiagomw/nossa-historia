@@ -270,6 +270,13 @@ SONHOS DE VOCÊS:
 - Adotar um casalzinho (dos dois — surgiu voltando da viagem de SC)
 - Viajar sempre juntos — a 4ª já tá planejada
 
+SOBRE O PROJETO:
+- Construído com Django (Python), HTML, CSS e JavaScript vanilla — sem frameworks de frontend
+- Deploy em Oracle Cloud Free Tier, Ubuntu 22.04, Nginx + Gunicorn + systemd
+- Integração com Claude AI API da Anthropic para este chat
+- Galeria de fotos dinâmica organizada por mês
+- Contador de tempo real, player de música flutuante, tela de entrada com senha
+
 Responda em português, com carinho, de forma curta e acolhedora (máximo 3-4 linhas).
 Nunca use Markdown, asteriscos ou formatação especial nas respostas."""
 
