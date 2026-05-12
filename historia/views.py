@@ -9,6 +9,11 @@ from django.views.decorators.http import require_http_methods
 from django.conf import settings
 
 
+# Extensões suportadas — altere aqui se precisar adicionar novos formatos
+FOTO_EXTS = {'jpg', 'jpeg', 'png', 'webp', 'gif'}
+VIDEO_EXTS = {'mp4', 'mov', 'webm'}
+
+
 STATS = [
     {'icone': '💬', 'numero': '28.433', 'label': 'mensagens trocadas'},
     {'icone': '📅', 'numero': '517',    'label': 'dias conversando'},
@@ -19,23 +24,21 @@ STATS = [
 ]
 
 PALAVRAS = [
-    
-    {'palavra': 'vida',        'count': 2812},
-    {'palavra': 'amor',        'count': 2203},
-    {'palavra': 'bom',         'count': 1142},
-    {'palavra': 'mozão',       'count': 799},
-    {'palavra': 'te amo', 'count': 700},
-    {'palavra': 'vidão',    'count': 566},
-    {'palavra': 'cheguei',     'count': 321},
-    {'palavra': 'cuidado',     'count': 303},
-    {'palavra': 'saindo',      'count': 219},
-    {'palavra': 'sempre',      'count': 153},
-    {'palavra': 'delícia',  'count': 169},
-    {'palavra': 'saudade',  'count': 149},
+    {'palavra': 'vida',                    'count': 2812},
+    {'palavra': 'amor',                    'count': 2203},
+    {'palavra': 'bom',                     'count': 1142},
+    {'palavra': 'mozão',                   'count': 799},
+    {'palavra': 'te amo',                  'count': 700},
+    {'palavra': 'vidão',                   'count': 566},
+    {'palavra': 'cheguei',                 'count': 321},
+    {'palavra': 'cuidado',                 'count': 303},
+    {'palavra': 'saindo',                  'count': 219},
+    {'palavra': 'sempre',                  'count': 153},
+    {'palavra': 'delícia',                 'count': 169},
+    {'palavra': 'saudade',                 'count': 149},
     {'palavra': 'umbanda/espiritualidade', 'count': 132},
-    {'palavra': 'mor',      'count': 126},
-    {'palavra': 'príncipe', 'count': 118},
-    
+    {'palavra': 'mor',                     'count': 126},
+    {'palavra': 'príncipe',                'count': 118},
 ]
 
 FRASES_THIAGO = [
@@ -57,7 +60,7 @@ FRASES_THIAGO = [
 ]
 
 FRASES_MEL = [
-    {'texto': 'De verdade nunca vivi o que vivo com você!', 'autor': 'Você'},
+    {'texto': 'De verdade nunca vivi o que vivo com você!'},
     {'texto': 'Eu nunca imaginei que estaríamos cogitando morar juntos e construir nossa família 🥹'},
     {'texto': 'Eu te amo tanto rapaz… que já até chorei hoje por isso 💛🥹'},
     {'texto': 'Só você pra animar meus dias — obrigada por cuidar de mim'},
@@ -102,7 +105,6 @@ SONHOS = [
 ]
 
 TIMELINE = [
-
     {
         'data': '10 de novembro de 2024',
         'titulo': 'O começo de tudo ✨',
@@ -163,22 +165,24 @@ TIMELINE = [
         'titulo': '1 ano de namoro 🎊',
         'desc': 'Um ano desde o pedido. O dia passou corrido, mas o amor seguiu firme — como toda segunda-feira dia 10 desde o começo.'
     },
-    { 
-        'data': '28 de dezembro de 2025', 
-        'titulo': 'Santa Catarina 🏡', 
-        'desc': 'Segunda viagem juntos — passaram o Réveillon na casa do amigo dela em Santa Catarina. O fim de ano longe de casa, mas do lado certo.'
-    },
-    {   'data': '23 de novembro de 2025', 
-        'titulo': 'Peça da Mel 🎭', 
+    {
+        'data': '23 de novembro de 2025',
+        'titulo': 'Peça da Mel 🎭',
         'desc': 'Domingo de teatro — mais uma peça dela, incrível por sinal. Estar lá pra ver ela brilhar no palco.'
+    },
+    {
+        'data': '28 de dezembro de 2025',
+        'titulo': 'Santa Catarina 🏡',
+        'desc': 'Segunda viagem juntos — passaram o Réveillon na casa do amigo dela em Santa Catarina. O fim de ano longe de casa, mas do lado certo.'
     },
     {
         'data': '22 de fevereiro de 2026',
         'titulo': 'Aniversário dela no Outback 🥩',
         'desc': 'Ele a levou ao Outback para comemorar. Ela disse: "Eu amei tudo que você fez pra mim Mozão, você tornou tudo especial."'
     },
-    {   'data': '27 de fevereiro de 2026', 
-        'titulo': 'Peruíbe com os amigos 🏖️', 
+    {
+        'data': '27 de fevereiro de 2026',
+        'titulo': 'Peruíbe com os amigos 🏖️',
         'desc': 'Terceira viagem juntos — Peruíbe com as amigas. Praia, sol e a melhor companhia.'
     },
     {
@@ -261,7 +265,7 @@ LINHA DO TEMPO:
 - 20/05/2025: ele conseguiu emprego CLT — ela foi encontrá-lo no primeiro dia
 - 10/11/2025: 1 ano de namoro | 23/11/2025: peça dela, incrível
 - 28/12/2025: viagem pra Santa Catarina, Réveillon na casa do amigo dela
-- Fev/2026: Peruíbe com as amigas | 22/02/2026: aniversário dela no Outback
+- 27/02/2026: Peruíbe com as amigas | 22/02/2026: aniversário dela no Outback
 - Jun-Jul/2026: 4ª viagem planejada — Trancoso ou Arraial d'Ajuda, BA
 
 SONHOS DE VOCÊS:
@@ -305,6 +309,9 @@ def chat_api(request):
     except (json.JSONDecodeError, KeyError):
         return JsonResponse({'error': 'Payload inválido'}, status=400)
 
+    if not isinstance(messages, list) or len(messages) > 50:
+        return JsonResponse({'error': 'Mensagens inválidas'}, status=400)
+
     api_key = settings.ANTHROPIC_API_KEY
     if not api_key:
         return JsonResponse({'error': 'Configure ANTHROPIC_API_KEY no servidor.'}, status=500)
@@ -341,32 +348,53 @@ def chat_api(request):
 def galeria_api(request):
     grupos = []
     galeria_path = os.path.join(settings.MEDIA_ROOT, 'galeria')
-    if os.path.isdir(galeria_path):
-        meses = sorted([d for d in os.listdir(galeria_path) if os.path.isdir(os.path.join(galeria_path, d)) and d != 'thumbs'])
-        for mes in meses:
-            mes_path = os.path.join(galeria_path, mes)
-            thumb_path = os.path.join(mes_path, 'thumbs')
-            fotos, videos = [], []
-            for f in sorted(os.listdir(mes_path)):
-                if not os.path.isfile(os.path.join(mes_path, f)):
-                    continue
-                url_original = f'{settings.MEDIA_URL}galeria/{mes}/{f}'
-                ext = f.lower().rsplit('.', 1)[-1]
-                thumb_name = f.rsplit('.', 1)[0] + '.jpg'
-                thumb_url = f'{settings.MEDIA_URL}galeria/{mes}/thumbs/{thumb_name}'
-                thumb_exists = os.path.isfile(os.path.join(thumb_path, thumb_name))
-                url_thumb = thumb_url if thumb_exists else url_original
 
-                if ext in ('jpg', 'jpeg', 'png', 'webp', 'gif'):
-                    fotos.append({'src': url_original, 'thumb': url_thumb})
-                elif ext in ('mp4', 'mov', 'webm'):
-                    videos.append({'src': url_original, 'thumb': url_thumb})
+    if not os.path.isdir(galeria_path):
+        return JsonResponse({'grupos': []})
 
-            if fotos or videos:
-                partes = mes.split('-')
-                grupos.append({
-                    'label': f"{partes[2].capitalize()} {partes[0]}",
-                    'fotos': fotos,
-                    'videos': videos
-                })
+    try:
+        meses = sorted([
+            d for d in os.listdir(galeria_path)
+            if os.path.isdir(os.path.join(galeria_path, d)) and d != 'thumbs'
+        ])
+    except PermissionError:
+        return JsonResponse({'error': 'Sem permissão para acessar a galeria'}, status=500)
+
+    for mes in meses:
+        mes_path = os.path.join(galeria_path, mes)
+        thumb_path = os.path.join(mes_path, 'thumbs')
+        fotos, videos = [], []
+
+        try:
+            arquivos = sorted(os.listdir(mes_path))
+        except PermissionError:
+            continue
+
+        for f in arquivos:
+            if not os.path.isfile(os.path.join(mes_path, f)):
+                continue
+
+            ext = f.lower().rsplit('.', 1)[-1]
+
+            if ext not in FOTO_EXTS | VIDEO_EXTS:
+                continue
+
+            url_original = f'{settings.MEDIA_URL}galeria/{mes}/{f}'
+            thumb_name = f.rsplit('.', 1)[0] + '.jpg'
+            thumb_url = f'{settings.MEDIA_URL}galeria/{mes}/thumbs/{thumb_name}'
+            url_thumb = thumb_url if os.path.isfile(os.path.join(thumb_path, thumb_name)) else url_original
+
+            if ext in FOTO_EXTS:
+                fotos.append({'src': url_original, 'thumb': url_thumb})
+            elif ext in VIDEO_EXTS:
+                videos.append({'src': url_original, 'thumb': url_thumb})
+
+        if fotos or videos:
+            partes = mes.split('-')
+            grupos.append({
+                'label': f"{partes[2].capitalize()} {partes[0]}",
+                'fotos': fotos,
+                'videos': videos
+            })
+
     return JsonResponse({'grupos': grupos})
