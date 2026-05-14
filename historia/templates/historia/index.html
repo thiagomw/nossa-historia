@@ -602,8 +602,30 @@ function scrollChat(){chatEl.scrollTop=chatEl.scrollHeight;}
 function addMsg(text,type){
   const div=document.createElement('div');div.className=`msg ${type}`;
   const now=new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
-  div.innerHTML=text.replace(/\n/g,'<br>')+`<div class="msg-time">${now}</div>`;
+  const copyBtn = type==='bot' ? `<button onclick="copyMsg(this)" style="background:none;border:none;cursor:pointer;font-size:0.7rem;color:var(--gold);opacity:0.5;padding:0;margin-left:0.5rem;transition:opacity 0.2s;" onmouseenter="this.style.opacity=1" onmouseleave="this.style.opacity=0.5">copiar</button>` : '';
+  div.innerHTML=text.replace(/\n/g,'<br>')+`<div class="msg-time">${now}${copyBtn}</div>`;
   chatEl.appendChild(div);scrollChat();
+}
+function copyMsg(btn){
+  const msg = btn.closest('.msg');
+  const clone = msg.cloneNode(true);
+  clone.querySelector('.msg-time').remove();
+  const text = clone.textContent.trim();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text).then(()=>{
+      btn.textContent='copiado!';
+      setTimeout(()=>btn.textContent='copiar',2000);
+    }).catch(()=>{
+      btn.textContent='erro :(';
+      setTimeout(()=>btn.textContent='copiar',2000);
+    });
+  } else {
+    const ta=document.createElement('textarea');
+    ta.value=text;document.body.appendChild(ta);ta.select();
+    document.execCommand('copy');document.body.removeChild(ta);
+    btn.textContent='copiado!';
+    setTimeout(()=>btn.textContent='copiar',2000);
+  }
 }
 function showTyping(){const div=document.createElement('div');div.className='typing';div.id='typing';div.innerHTML='<span></span><span></span><span></span>';chatEl.appendChild(div);scrollChat();}
 function removeTyping(){const t=document.getElementById('typing');if(t)t.remove();}
